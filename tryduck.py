@@ -195,7 +195,7 @@ def main():
 
     # Shuffle command
     shuffleParser = subparsers.add_parser("shuffle", help="Shuffle an image")
-    shuffleParser.add_argument("-i", type=str, required=True, help="Path to the input image")
+    shuffleParser.add_argument("-i", type=str, help="Path to the input image")
     shuffleParser.add_argument("-u", type=str, help="Url of the image.")
     shuffleParser.add_argument("-r", type=int, default=50, help="Number of rows to split the image")
     shuffleParser.add_argument("-c", type=int, default=50, help="Number of columns to split the image")
