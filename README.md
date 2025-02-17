@@ -50,11 +50,10 @@ python tryduck.py shuffle -i image.jpg -o shuffled_image.jpg -p mypassword -r 30
 #### Arguments:
 
 ```bash
-python tryduck.py shuffle -i <input_image_path> -o <output_image_path> -p <password> [-u <image_url>] [-r <rows>] [-c <columns>]
+python tryduck.py shuffle -i <input_image_path/URL> -o <output_image_path> -p <password> [-u <image_url>] [-r <rows>] [-c <columns>]
 ```
 
-- `-i`  Path to the input image (required).
-- `-u` URL of the image (optional, overrides -i).
+- `-i` File path or URL of the input image.
 - `-o` Path to save the shuffled image (required).
 - `-p` Password for encryption (required).
 - `-r` Number of rows to split the image (default: 50).

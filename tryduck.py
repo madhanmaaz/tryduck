@@ -54,17 +54,17 @@ class Tryduck():
         self.password = password
         self.tag = b"--tryduck--"
 
-        if os.path.exists(self.outputPath):
-            print(f"Error: Output file '{self.outputPath}' already exists. Choose a different name.")
-            exit(1)
+        # if os.path.exists(self.outputPath):
+        #     print(f"Error: Output file '{self.outputPath}' already exists. Choose a different name.")
+        #     exit(1)
 
-    def shuffleImage(self, url, rows, cols):
+    def shuffleImage(self, rows, cols):
         try:
             generatedKey = Encryptor.passwordToKey(self.password)
 
             # Load image from URL or local path
-            if url is not None:
-                response = requests.get(url)
+            if self.imagePath.startswith("http"):
+                response = requests.get(self.imagePath)
                 response.raise_for_status()
                 imageData = response.content
             else:
@@ -195,8 +195,7 @@ def main():
 
     # Shuffle command
     shuffleParser = subparsers.add_parser("shuffle", help="Shuffle an image")
-    shuffleParser.add_argument("-i", type=str, help="Path to the input image")
-    shuffleParser.add_argument("-u", type=str, help="Url of the image.")
+    shuffleParser.add_argument("-i", type=str, help="File path or URL of the input image")
     shuffleParser.add_argument("-r", type=int, default=50, help="Number of rows to split the image")
     shuffleParser.add_argument("-c", type=int, default=50, help="Number of columns to split the image")
     shuffleParser.add_argument("-p", type=str, required=True, help="Password to encrypt the shuffle order")
@@ -218,7 +217,6 @@ def main():
     if args.command == "shuffle":
         try:
             tryduck.shuffleImage(
-                args.u,
                 args.r,
                 args.c
             )
